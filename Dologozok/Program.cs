@@ -131,15 +131,15 @@ static void Add(List<Dolgozok> workers)
     }
 }
 
-//static void DeleteRecord(List<Dolgozok> workers)
-//{
-//    Console.WriteLine("Írj be egy id aminek ki akarod törölni");
-//    if(int.TryParse(Console.ReadLine(), out int id))
-//    {
-
-//    }
-//    else
-//    {
-//        Console.WriteLine("Hibás adat: ID");
-//    }
-//}
+static void DeleteRecord(List<Dolgozok> workers)
+{
+    Console.WriteLine("Írj be egy id aminek ki akarod törölni");
+    if(int.TryParse(Console.ReadLine(), out int id) && id <= workers.Count)
+    {
+        workers.Remove(workers.Find(x => x.ID == id));
+    }
+    else
+    {
+        Console.WriteLine("Hibás adat: ID");
+    }
+}
