@@ -64,6 +64,8 @@ static void TaskChoose(List<Dolgozok> workers)
     if (choose.Trim() == "1")
     {
         //Task 1 parts
+        Add(workers);
+        DeleteRecord(workers);
     }
     else if (choose.Trim() == "2")
     {
@@ -89,3 +91,55 @@ static void Task2(List<Dolgozok> workers)
     Console.WriteLine($"A legidősebb dolgozó: {workers.Find(x => x.Age == workers.Max().Age).Name}");
     Console.WriteLine($"A dolgozók átlag életkora: {workers.Average(x => x.Age)}");
 }
+
+static void Add(List<Dolgozok> workers)
+{
+    int count = workers.Count;
+    while(count == workers.Count)
+    {
+        Console.WriteLine("Írd ide a Nevet: ");
+        string name = Console.ReadLine();
+        Console.WriteLine("Írd ide a Nemet: ");
+        string gender = Console.ReadLine();
+        Console.WriteLine("Írd ide a életkort: ");
+        string age = Console.ReadLine();
+        Console.WriteLine("Írd ide a Fizetést: ");
+        string salary = Console.ReadLine();
+        int a = 0;
+        int s = 0;
+        if (name == "")
+        {
+            Console.WriteLine("Hibás adat: Név");
+        }
+        else if(!(gender.Trim() is "férfi" or "nő"))
+        {
+            Console.WriteLine("Hibás adat: Nem");
+        }
+        else if(!int.TryParse(age, out a))
+        {
+            Console.WriteLine("Hibás adat: Életkor");
+        }
+        else if(!int.TryParse(salary, out s))
+        {
+            Console.WriteLine("Hibás adat: Fizetés");
+        }
+        else
+        {
+            Dolgozok d = new(workers.Count + 1, name, gender, a, s);
+            workers.Add(d);
+        }
+    }
+}
+
+//static void DeleteRecord(List<Dolgozok> workers)
+//{
+//    Console.WriteLine("Írj be egy id aminek ki akarod törölni");
+//    if(int.TryParse(Console.ReadLine(), out int id))
+//    {
+
+//    }
+//    else
+//    {
+//        Console.WriteLine("Hibás adat: ID");
+//    }
+//}
