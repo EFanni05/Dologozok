@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Dologozok
@@ -14,6 +16,7 @@ namespace Dologozok
         private int age;
         private int salary;
 
+        [JsonPropertyName("id")]
         public int ID
         {
             get 
@@ -33,6 +36,7 @@ namespace Dologozok
             }
         }
 
+        [JsonPropertyName("age")]
         public int Age
         {
             get
@@ -52,6 +56,7 @@ namespace Dologozok
             }
         }
 
+        [JsonPropertyName("salary")]
         public int Salary
         {
             get
@@ -71,7 +76,9 @@ namespace Dologozok
             }
         }
 
+        [JsonPropertyName("name")]
         public string Name { get => name; set => name = value; }
+        [JsonPropertyName("gender")]
         public string Gender { get => gender; set => gender = value; }
 
         public Dolgozok(int id, string name, string gender, int age, int salary)
