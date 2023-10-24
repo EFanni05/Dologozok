@@ -1,10 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Dologozok;
+using System.Text.Json;
+
 List<Dolgozok> workers = new List<Dolgozok>();
 
-
 string fileName = FileTypeChooes();
-StreamReader reader = new StreamReader(fileName);
+StreamReader reader = new StreamReader(Path.Combine("ReadIn files", fileName));
 if (fileName.Contains("csv"))
 {
     //csv read in
@@ -18,7 +19,13 @@ if (fileName.Contains("csv"))
 }
 else if (fileName.Contains("json"))
 {
-    //json read in
+    string json = File.ReadAllText(Path.Combine("ReadIn files", fileName));
+    var w = JsonSerializer.Deserialize<List<Dolgozok>>(json: json);
+    if (w != null)
+    {
+        workers = w;
+    }
+    
 }
 else if (fileName.Contains("sql"))
 {
